@@ -31,6 +31,7 @@ namespace DnsClient
                 int timeoutInMillis = timeout.TotalMilliseconds >= int.MaxValue ? -1 : (int)timeout.TotalMilliseconds;
                 udpClient.Client.ReceiveTimeout = timeoutInMillis;
                 udpClient.Client.SendTimeout = timeoutInMillis;
+                udpClient.Client.Bind(new IPEndPoint(IPAddress.Any, 0));
 
                 using (var writer = new DnsDatagramWriter())
                 {
